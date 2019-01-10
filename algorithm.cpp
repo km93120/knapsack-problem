@@ -3,19 +3,25 @@
 Algorithm::Algorithm()
 {
 
-    pair <int,int> p1,p2,p3,p4;
+    pair <int,int> p1,p2,p3,p4,p5,p6;
     maxWeight = 7;
     //value-weight pairs
 
     p1 = make_pair(1,1);
     p2 = make_pair(4,3);
     p3 = make_pair(5,4);
-    p4 = make_pair(7,5);
+    p4 = make_pair(7,6);
+    p5 = make_pair(9,5);
+    p6 = make_pair(445,4);
+
+
 
     valueWeightsPairs.append(p1);
     valueWeightsPairs.append(p2);
     valueWeightsPairs.append(p3);
     valueWeightsPairs.append(p4);
+ //   valueWeightsPairs.append(p6);
+    valueWeightsPairs.append(p5);
 
     for (int i = 0; i < valueWeightsPairs.count();i++)
     {
@@ -131,6 +137,8 @@ void Algorithm::setMatrix()
 
 QVector<std::pair<int, int>> Algorithm::getSelectedItems()
 {
+    //notion de poids maximum non appréciée par l'ordinateur..
+
     int x = valueWeightsPairs.count();
     int y = maxWeight + 1;
     bool ok = false;
@@ -151,7 +159,7 @@ QVector<std::pair<int, int>> Algorithm::getSelectedItems()
             for(int j = 0; j < y; j++)
             {
 
-               if (nodeMatrix[i][j]->getPrev() != nullptr)
+               if (nodeMatrix[i][y-1]->getPrev() != nullptr)
                {
                    ok = false;
                    cout << "valeur de i : " << i << endl;
@@ -172,7 +180,7 @@ QVector<std::pair<int, int>> Algorithm::getSelectedItems()
     }
     cout << endl;
     cout << selectedItems.count();
-    for (int i = 0;i < selectedItems.count(); i++)
+    for(int i = 0; i < selectedItems.count(); i++)
     {
          cout << "value : " << selectedItems.at(i).first<< endl << "weight : "<<selectedItems.at(i).second << endl;
     }
